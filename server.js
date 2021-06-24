@@ -22,9 +22,11 @@ io.on('connection', socket =>{
             
         socket.broadcast.to(user.room).emit('message', formatMessage(botName,`${user.username} Entro al chat`));
         
-        //examen
-        socket.broadcast.to(user.room).emit('message', formatMessage(botName,`los usuarios conectados son: ${getRoomUsers(user.room).map((user,index, array) => {return user.username})} <br>`))
-        //fin examen
+        socket.broadcast.to(user.room).emit('message', formatMessage(botName,`Estos son los usuarios actuales: ${getRoomUsers(user.room).map((user,index, array) => {return user.username})}`))
+
+        //Examen practico//
+        socket.broadcast.to(user.room).emit('message', formatMessage(botName,`La cantidad de usuarios conectados es: ${getRoomUsers(user.room).length}`))
+        //Fin del examen//
 
         //practica 11
         io.to(user.room).emit('roomUsers', {room:user.room, users: getRoomUsers(user.room)});
